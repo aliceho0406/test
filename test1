@@ -1,0 +1,59 @@
+from turtle import Turtle, Screen
+from random import random
+
+方形烏龜 = Turtle()
+方形烏龜.shape("square")
+方形烏龜.speed(5)
+方形烏龜.hideturtle()
+方形烏龜.penup()
+
+方形烏龜.goto(-400, 350)
+方形烏龜.write("改變顏色", align='center', font=("Arial", 20, "normal"))
+
+方形烏龜.goto(-400, 300)
+方形烏龜.shapesize(5,5)
+方形烏龜.showturtle()
+
+圓形烏龜 = Turtle()
+圓形烏龜.shape("circle")
+圓形烏龜.speed(0)
+圓形烏龜.pensize(10)
+圓形烏龜.shapesize(0.2,0.2)
+
+def func1(x,y) :
+    print(x,y)
+    print("使用者按了滑鼠左鍵")
+    圓形烏龜.color(random(),random(),random())
+    方形烏龜.color(*圓形烏龜.color())
+
+def func2(x,y) :
+    print(x,y)
+    print("使用者按了滑鼠中鍵")
+
+def func3(x,y) :
+    print(x,y)
+    print("使用者按了滑鼠右鍵")
+
+def func4(x,y) :
+
+    圓形烏龜.ondrag(None)
+    圓形烏龜.goto(x,y)
+    圓形烏龜.ondrag(func4)
+
+def func5(x,y) :
+    圓形烏龜.penup()
+    圓形烏龜.goto(x,y)
+    圓形烏龜.pendown()
+
+方形烏龜.onclick(func1,btn=1)  # 滑鼠左鍵
+方形烏龜.onclick(func2,btn=2)  # 滑鼠中鍵
+方形烏龜.onclick(func3,btn=3)  # 滑鼠右鍵
+
+圓形烏龜.ondrag(func4,btn=1)
+#圓形烏龜.onclick(func6,btn=1)  # 滑鼠左鍵
+
+視窗物件 = Screen()
+#視窗物件.listen()
+視窗物件.onclick(func5,btn=1)
+
+視窗物件.mainloop()
